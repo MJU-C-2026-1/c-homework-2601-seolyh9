@@ -1,9 +1,3 @@
-/* 
-  파일이름: 배달 음식 더치페이 계산기
-  작 성 자: 설연희, 26-04-06
-  하 는 일: 배달 음식 더치페이 계산
-*/
-
 #include <stdio.h>
 
 int main() {
@@ -15,7 +9,7 @@ int main() {
     double person_count;    // 인원수 (double) 
     double total_per_person; // 1인당 결과값 (double)
 
-    // 2. 입력 (scanf 사용)
+    // 2. 입력 
     printf("--- 배달 음식 더치페이 계산기 V1.0 ---\n");
     
     printf("메뉴의 첫 글자를 입력하세요 (P/C/J): ");
@@ -34,6 +28,7 @@ int main() {
     scanf("%lf", &person_count); // 계산의 정확도를 위해 %lf로 입력받음
 
     // 3. 산술 연산 (순차 구조)
+    
     total_per_person = (food_price + delivery_fee) / person_count;
 
     // 4. 출력 (printf 사용)
