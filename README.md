@@ -59,8 +59,8 @@
   4. VS Code 설정에서 Run In Terminal 옵션을 활성화하거나, 터미널 탭에서 직접 명령어를 입력하여 실행함으로써 키보드 입력이 프로그램에 정상적으로 전달되도록 개선함.
      
 ### **📁 증빙 자료:**
-  * [1차_AI협업캡처.pdf 첨부 완료] (첨부 후 링크)
-  * [1차과제_실행결과.jpg]
+  * [1차_AI협업캡처.pdf 첨부 완료] [https://github.com/MJU-C-2026-1/c-homework-2601-seolyh9/blob/main/1차과제%20AI%20활용.pdf]
+  * [1차과제_실행결과.jpg] [https://github.com/MJU-C-2026-1/c-homework-2601-seolyh9/blob/main/1차과제%20코드%20.jpeg]
 
 <br>
 
@@ -88,8 +88,8 @@
      * **해결:** 현재 if문 값을 계산 후 어떤 문장을 화면에 보여줄 지 결정하는 역할을 함. 이를 [4] 이전에 두려면 문자열 변수를 만들어 저장해야 하며 이때, 배열/포인터의 개념이 필요함. 따라서 4차 과제에서 해결할 것.  
      
 ### **📁 증빙 자료:**
-  * [2차_AI협업캡처.pdf 첨부 완료] (첨부 후 링크)
-  * [2차과제_실행결과.jpg]
+  * [2차_AI협업캡처.pdf 첨부 완료] [https://github.com/MJU-C-2026-1/c-homework-2601-seolyh9/blob/main/2차과제%20AI%20활용.pdf]
+  * [2차과제_실행결과.jpg] [https://github.com/MJU-C-2026-1/c-homework-2601-seolyh9/blob/main/2차%20과제%20코드%20실행.png]
 <br>
 
 ## 🟨 [3차 과제: V3.0] 무한 루프와 메뉴 시스템 (반복문) - 향후 작성 예정
