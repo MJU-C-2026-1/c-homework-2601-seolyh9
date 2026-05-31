@@ -114,9 +114,12 @@
      * **해결:** 프로그램이 종료될 때까지 유지되어야 하는 핵심 데이터인 성장 지수를 전역 변수(Global Variable)로 선언하고, 연산 함수(calculate_score)가 반환한 값을 통해 전역 변수를 실시간으로 업데이트하도록 구조를 변경하여 데이터 유지 문제를 해결
      
 ### **📁 증빙 자료:**
-  * [3차_AI협업캡처.pdf 첨부 완료] (첨부 후 링크)
+  * [3차_AI협업캡처.pdf 첨부 완료] [3차과제_AI 활용.pdf](https://github.com/MJU-C-2026-1/c-homework-2601-seolyh9/blob/f134f022dd3f5e8abd6891c26be02582a8f63e85/3%E1%84%8E%E1%85%A1%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6_AI%20%E1%84%92%E1%85%AA%E1%86%AF%E1%84%8B%E1%85%AD%E1%86%BC.pdf)
   * [3차과제_실행결과.jpg]
-https://github.com/MJU-C-2026-1/c-homework-2601-seolyh9/blob/main/3%E1%84%8E%E1%85%A1%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6_%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A2%E1%86%BC%E1%84%80%E1%85%A7%E1%86%AF%E1%84%80%E1%85%AA.png
+(https://github.com/MJU-C-2026-1/c-homework-2601-seolyh9/blob/f134f022dd3f5e8abd6891c26be02582a8f63e85/3%E1%84%8E%E1%85%A1%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A6_%E1%84%89%E1%85%B5%E1%86%AF%E1%84%92%E1%85%A2%E1%86%BC%E1%84%80%E1%85%A7%E1%86%AF%E1%84%80%E1%85%AA.png)
+  * 
+    
+
 
 <br>
 
