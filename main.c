@@ -6,73 +6,122 @@
 
 #include <stdio.h>
 
-int main() {
-    // [1] 변수 선언: 다양한 자료형 및 5개 이상의 변수 활용
-    char user_initial;      // 사용자 이니셜
-    char user_gender;       // 성별 (M/F) - V2.0 추가
-    int training_months;    // 수련 기간
-    int sparring_count;     // 주간 스파링 횟수
-    double current_weight;  // 현재 체중
-    double training_hours;  // 주간 훈련 시간
-    double performance_idx; // 성장 지수
+// [1] 전역 변수 선언 영역
+// 프로그램이 종료될 때까지 성장 지수 데이터를 유지하고, 함수 내부에서 업데이트하기 위해 선언
 
-    // [2] 데이터 입력
-    printf("--- 주짓수 퍼포먼스 분석 시스템 V2.0 ---\n");
-    
-    printf("본인의 영문 이니셜 한 글자를 입력하세요: ");
-    scanf(" %c", &user_initial);
+double global_performance_idx = 0.0;
 
-    printf("성별을 입력하세요 (남성: M, 여성: F): ");
-    scanf(" %c", &user_gender);
+// [2] 사용자 정의 함수 영역
+// 함수 1. 성장 지수 계산 함수 (반환값 return 구조)
+// 입력받은 정수와 실수 데이터를 인자로 받아 사칙연산을 수행하고 결과(double)를 반환
 
-    printf("수련 기간(개월)과 주간 스파링 횟수를 입력(예: 12 5): ");
-    scanf("%d %d", &training_months, &sparring_count);
+double calculate_score(int months, int sparring, double hours) {
+    double score;
+    // 1차 과제의 산술 연산 공식을 그대로 함수 내부로 이사했습니다.
+    score = (sparring * 1.5) + (hours / 2.0) + (months * 0.1);
+    return score; // 계산된 결과값을 호출한 곳으로 반환
+}
 
-    printf("현재 체중(kg)을 입력하세요: ");
-    scanf("%lf", &current_weight);
-
-    printf("일주일 총 훈련 시간(시간)을 입력하세요: ");
-    scanf("%lf", &training_hours);
-
-    // [3] 산술 연산: 성장 지수 계산
-    performance_idx = (sparring_count * 1.5) + (training_hours / 2.0) + (training_months * 0.1);
-
-    // [4] 결과 출력 및 조건문 판별 
+// 함수 2. 분석 리포트 및 체급 출력 함수 (매개변수 전달 구조)
+// main 함수로부터 모든 신체 데이터를 넘겨받아 성별/체급별 중첩 조건문을 실행하고 출력
+void print_report(char initial, char gender, double weight, int months, int sparring, double hours) {
     printf("\n==========================================\n");
-    printf("입력하신 [%c] 관원님의 분석 리포트입니다.\n", user_initial);
+    printf("입력하신 [%c] 관원님의 분석 리포트입니다.\n", initial);
     printf("------------------------------------------\n");
 
-    // 4-1. 성별에 따른 중첩 및 다중 조건문 (체급 분류)
-    if (user_gender == 'M' || user_gender == 'm') { // 논리 연산자 || 활용
+    // 2차 과제 :  성별/체급별 중첩 및 다중 if문 
+    if (gender == 'M' || gender == 'm') {
         printf("성별: 남성\t");
-        if (current_weight < 64.0) printf("체급: 페더급\n");
-        else if (current_weight < 70.0) printf("체급: 라이트급\n");
+        if (weight < 64.0) printf("체급: 페더급\n");
+        else if (weight < 70.0) printf("체급: 라이트급\n");
         else printf("체급: 미들급 이상\n");
     } 
-    else if (user_gender == 'F' || user_gender == 'f') {
+    else if (gender == 'F' || gender == 'f') {
         printf("성별: 여성\t");
-        if (current_weight < 53.0) printf("체급: 페더급\n");
-        else if (current_weight < 58.0) printf("체급: 라이트급\n");
+        if (weight < 53.0) printf("체급: 페더급\n");
+        else if (weight < 58.0) printf("체급: 라이트급\n");
         else printf("체급: 미들급 이상\n");
     }
     else {
         printf("성별: 알 수 없음 (잘못된 입력)\n");
     }
 
-    printf("현재 체중:\t%.2f kg\n", current_weight);
-    printf("수련 기간:\t%d 개월\n", training_months);
-    printf("주간 기록:\t%d회 스파링 / %.1f시간 훈련\n", sparring_count, training_hours);
+    printf("현재 체중:\t%.2f kg\n", weight);
+    printf("수련 기간:\t%d 개월\n", months);
+    printf("주간 기록:\t%d회 스파링 / %.1f시간 훈련\n", sparring, hours);
     printf("------------------------------------------\n");
-    printf(">> 퍼포먼스 지수: %.2f 점\n", performance_idx);
-
-    // 4-2. 논리 연산자(&&)를 활용한 승급 자격 판별
-    if (performance_idx >= 50.0 && training_months >= 6) {
-        printf(">> [결과] 축하합니다! 승급 심사 대상자입니다.\n");
-    } else {
-        printf(">> [결과] 수련을 지속하여 점수를 더 쌓으세요.\n");
-    }
-    
+  
+    // 전역 변수에 저장되어 있는 현재의 퍼포먼스 지수를 가져와 출력
+    printf(">> 현재 누적 퍼포먼스 지수: %.2f 점\n", global_performance_idx);
     printf("==========================================\n");
+}
+
+
+// [3] 메인 로직 영역
+
+int main() {
+    // // 함수 내부에서만 사용되는 지역 변수 선언
+    char user_initial = ' ';        // 사용자 이니셜
+    char user_gender = ' ';         // 성별 (M/F) - V2.0 추가
+    int training_months = 0;        // 수련 기간
+    int sparring_count = 0;         // 주간 스파링 횟수
+    double current_weight = 0.0;    // 현재 체중
+    double training_hours = 0.0;    // 주간 훈련 시간
+    double performance_idx; // 성장 지수
+    
+  int menu_choice; // 사용자의 메뉴 선택 번호를 담을 지역 변수
+  
+  // while(1) 무한 루프를 사용하여 프로그램이 계속 구동되도록 제어
+    while(1) {
+        printf("\n--- 🥋 주짓수 퍼포먼스 관리 시스템 V3.0 ---\n");
+        printf("1. 관원 데이터 입력\n");
+        printf("2. 분석 리포트 및 체급 조회\n");
+        printf("3. 승급 자격 심사 진단\n");
+        printf("0. 프로그램 종료\n");
+        printf("------------------------------------------\n");
+        printf("원하는 기능의 번호를 선택하세요: ");
+        scanf("%d", &menu_choice);
+
+        // 입력받은 메뉴 번호에 따른 데이터 분기 처리 (목차형 구조)
+        if (menu_choice == 1) {
+            printf("\n[1] 관원 데이터를 입력합니다.\n");
+            printf("영문 이니셜 한 글자 입력: ");
+            scanf(" %c", &user_initial);
+            printf("성별 입력 (남성: M, 여성: F): ");
+            scanf(" %c", &user_gender);
+            printf("수련 기간(개월)과 주간 스파링 횟수 입력(예: 12 5): ");
+            scanf("%d %d", &training_months, &sparring_count);
+            printf("현재 체중(kg) 입력: ");
+            scanf("%lf", &current_weight);
+            printf("일주일 총 훈련 시간(시간) 입력: ");
+            scanf("%lf", &training_hours);
+         
+          // 데이터 입력이 끝나면 계산 함수를 호출하여 전역 변수 값을 직접 업데이트
+            global_performance_idx = calculate_score(training_months, sparring_count, training_hours);
+            printf(">> 데이터 입력 및 퍼포먼스 지수 계산이 완료되었습니다.\n");
+          } 
+        else if (menu_choice == 2) {
+            // 복잡한 출력 코드를 단 한 줄의 함수 호출로 간결하게 처리 (매개변수 전달)
+            print_report(user_initial, user_gender, current_weight, training_months, sparring_count, training_hours);
+        } 
+        else if (menu_choice == 3) {
+            printf("\n[3] 승급 자격 심사 진단 결과\n");
+            // 논리 연산자(&&)와 전역 변수 값을 활용하여 자격을 판별합니다.
+            if (global_performance_idx >= 50.0 && training_months >= 6) {
+                printf(">> 🎉 축하합니다! [%c] 관원님은 승급 심사 대상자입니다.\n", user_initial);
+            } else {
+                printf(">> 🥋 수련을 지속하여 점수와 기간을 더 쌓으세요. (자격 미달)\n");
+            }
+        } 
+        else if (menu_choice == 0) {
+            // 사용자가 0번을 눌렀을 때만 break를 만나 무한 루프를 탈출하고 프로그램이 종료됩니다.
+            printf("\n시스템을 종료합니다. 즐거운 수련 되세요! Oss!\n");
+            break; 
+        } 
+        else {
+            printf("\n🚨 잘못된 번호입니다. 0~3 사이의 번호를 입력해주세요.\n");
+        }
+    }
 
     return 0;
 }
