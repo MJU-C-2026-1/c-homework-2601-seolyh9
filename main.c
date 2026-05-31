@@ -106,7 +106,7 @@ int main() {
         } 
         else if (menu_choice == 3) {
             printf("\n[3] 승급 자격 심사 진단 결과\n");
-            // 논리 연산자(&&)와 전역 변수 값을 활용하여 자격을 판별합니다.
+            // 논리 연산자(&&)와 전역 변수 값을 활용하여 자격을 판별
             if (global_performance_idx >= 50.0 && training_months >= 6) {
                 printf(">> 🎉 축하합니다! [%c] 관원님은 승급 심사 대상자입니다.\n", user_initial);
             } else {
@@ -114,7 +114,7 @@ int main() {
             }
         } 
         else if (menu_choice == 0) {
-            // 사용자가 0번을 눌렀을 때만 break를 만나 무한 루프를 탈출하고 프로그램이 종료됩니다.
+            // 사용자가 0번을 눌렀을 때만 break를 만나 무한 루프를 탈출하고 프로그램 종료
             printf("\n시스템을 종료합니다. 즐거운 수련 되세요! Oss!\n");
             break; 
         } 
