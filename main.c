@@ -90,7 +90,7 @@ for (int i = 0; i < MAX_MEMBERS; i++) {
 
 // [3] 메인 로직 영역
 int main() {
-    // 4차 과제 핵심: 단일 지역 변수 구조를 기호상수(MAX_MEMBERS) 기반 배열 구조로 전면 확장
+    // 4차 과제 핵심: 단일 지역 변수 구조를 기호상수(MAX_MEMBERS) 기반 배열 구조로 확장
     char member_names[MAX_MEMBERS][20];       // 2차원 문자 배열 (관원 영문 이름 저장용)
     char member_genders[MAX_MEMBERS];          // 성별 배열
     int training_months[MAX_MEMBERS];         // 수련 기간 배열
