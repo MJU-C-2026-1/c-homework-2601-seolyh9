@@ -1,6 +1,6 @@
 /* 
   파일이름: 주짓수 퍼포먼스 분석 시스템
-  작 성 자: 설연희, 26-05-31
+  작 성 자: 설연희, 26-06-15
   하 는 일: 주짓수 퍼포먼스 분석 및 관원 관리 
 */
 
@@ -88,121 +88,53 @@ for (int i = 0; i < MAX_MEMBERS; i++) {
     printf("========================================================================================\n");
 }
 
-// [3] 메인 로직 영역 (목차형 구조 아키텍처 실현)
-
-double global_performance_idx = 0.0;
-
-// [2] 사용자 정의 함수 영역
-// 함수 1. 성장 지수 계산 함수 (반환값 return 구조)
-// 입력받은 정수와 실수 데이터를 인자로 받아 사칙연산을 수행하고 결과(double)를 반환
-
-double calculate_score(int months, int sparring, double hours) {
-    double score;
-    // 1차 과제의 산술 연산 공식을 그대로 함수 내부로 이사했습니다.
-    score = (sparring * 1.5) + (hours / 2.0) + (months * 0.1);
-    return score; // 계산된 결과값을 호출한 곳으로 반환
-}
-
-// 함수 2. 분석 리포트 및 체급 출력 함수 (매개변수 전달 구조)
-// main 함수로부터 모든 신체 데이터를 넘겨받아 성별/체급별 중첩 조건문을 실행하고 출력
-void print_report(char initial, char gender, double weight, int months, int sparring, double hours) {
-    printf("\n==========================================\n");
-    printf("입력하신 [%c] 관원님의 분석 리포트입니다.\n", initial);
-    printf("------------------------------------------\n");
-
-    // 2차 과제 :  성별/체급별 중첩 및 다중 if문 
-    if (gender == 'M' || gender == 'm') {
-        printf("성별: 남성\t");
-        if (weight < 64.0) printf("체급: 페더급\n");
-        else if (weight < 70.0) printf("체급: 라이트급\n");
-        else printf("체급: 미들급 이상\n");
-    } 
-    else if (gender == 'F' || gender == 'f') {
-        printf("성별: 여성\t");
-        if (weight < 53.0) printf("체급: 페더급\n");
-        else if (weight < 58.0) printf("체급: 라이트급\n");
-        else printf("체급: 미들급 이상\n");
-    }
-    else {
-        printf("성별: 알 수 없음 (잘못된 입력)\n");
-    }
-
-    printf("현재 체중:\t%.2f kg\n", weight);
-    printf("수련 기간:\t%d 개월\n", months);
-    printf("주간 기록:\t%d회 스파링 / %.1f시간 훈련\n", sparring, hours);
-    printf("------------------------------------------\n");
-  
-    // 전역 변수에 저장되어 있는 현재의 퍼포먼스 지수를 가져와 출력
-    printf(">> 현재 누적 퍼포먼스 지수: %.2f 점\n", global_performance_idx);
-    printf("==========================================\n");
-}
-
-
 // [3] 메인 로직 영역
-
 int main() {
-    // // 함수 내부에서만 사용되는 지역 변수 선언
-    char user_initial = ' ';        // 사용자 이니셜
-    char user_gender = ' ';         // 성별 (M/F) - V2.0 추가
-    int training_months = 0;        // 수련 기간
-    int sparring_count = 0;         // 주간 스파링 횟수
-    double current_weight = 0.0;    // 현재 체중
-    double training_hours = 0.0;    // 주간 훈련 시간
-    double performance_idx; // 성장 지수
+    // 4차 과제 핵심: 단일 지역 변수 구조를 기호상수(MAX_MEMBERS) 기반 배열 구조로 전면 확장
+    char member_names[MAX_MEMBERS][20];       // 2차원 문자 배열 (관원 영문 이름 저장용)
+    char member_genders[MAX_MEMBERS];          // 성별 배열
+    int training_months[MAX_MEMBERS];         // 수련 기간 배열
+    int sparring_counts[MAX_MEMBERS];          // 주간 스파링 횟수 배열
+    double current_weights[MAX_MEMBERS];       // 현재 체중 배열
+    double training_hours[MAX_MEMBERS];        // 주간 훈련 시간 배열
+    double performance_indices[MAX_MEMBERS];   // 계산된 성장 지수 배열 (기존 global 변수 대체)
     
-  int menu_choice; // 사용자의 메뉴 선택 번호를 담을 지역 변수
-  
-  // while(1) 무한 루프를 사용하여 프로그램이 계속 구동되도록 제어
+    int menu_choice; // 사용자의 메뉴 선택 번호를 담을 지역 변수
+
+// while(1) 무한 루프 기반 메뉴 UI 프레임워크 (3차 구조 유지)
     while(1) {
-        printf("\n--- 🥋 주짓수 퍼포먼스 관리 시스템 V3.0 ---\n");
-        printf("1. 관원 데이터 입력\n");
-        printf("2. 분석 리포트 및 체급 조회\n");
-        printf("3. 승급 자격 심사 진단\n");
+        printf("\n--- 주짓수 통합 관원 관리 시스템 V4.0 ---\n");
+        printf("1. 전 관원 정보 일괄 입력 (%d명)\n", MAX_MEMBERS);
+        printf("2. 전 관원 성장 지수 일괄 계산\n");
+        printf("3. 종합 리포트 및 체급/승급 조회\n");
         printf("0. 프로그램 종료\n");
-        printf("------------------------------------------\n");
+        printf("--------------------------------------------------\n");
         printf("원하는 기능의 번호를 선택하세요: ");
         scanf("%d", &menu_choice);
 
-        // 입력받은 메뉴 번호에 따른 데이터 분기 처리 (목차형 구조)
+// 입력받은 메뉴 번호에 따른 데이터 분기 처리 (독립된 함수 호출 구조)
         if (menu_choice == 1) {
-            printf("\n[1] 관원 데이터를 입력합니다.\n");
-            printf("영문 이니셜 한 글자 입력: ");
-            scanf(" %c", &user_initial);
-            printf("성별 입력 (남성: M, 여성: F): ");
-            scanf(" %c", &user_gender);
-            printf("수련 기간(개월)과 주간 스파링 횟수 입력(예: 12 5): ");
-            scanf("%d %d", &training_months, &sparring_count);
-            printf("현재 체중(kg) 입력: ");
-            scanf("%lf", &current_weight);
-            printf("일주일 총 훈련 시간(시간) 입력: ");
-            scanf("%lf", &training_hours);
-         
-          // 데이터 입력이 끝나면 계산 함수를 호출하여 전역 변수 값을 직접 업데이트
-            global_performance_idx = calculate_score(training_months, sparring_count, training_hours);
-            printf(">> 데이터 입력 및 퍼포먼스 지수 계산이 완료되었습니다.\n");
-          } 
+            // 주소 참조를 통해 함수 내부에서 메인의 원본 배열 데이터를 채움
+            input_members(member_names, member_genders, training_months, sparring_counts, current_weights, training_hours);
+        } 
         else if (menu_choice == 2) {
-            // 복잡한 출력 코드를 단 한 줄의 함수 호출로 간결하게 처리 (매개변수 전달)
-            print_report(user_initial, user_gender, current_weight, training_months, sparring_count, training_hours);
+            // 입력된 원본 배열 데이터를 가공하여 인덱스 배열을 생성
+            calculate_all(training_months, sparring_counts, training_hours, performance_indices);
         } 
         else if (menu_choice == 3) {
-            printf("\n[3] 승급 자격 심사 진단 결과\n");
-            // 논리 연산자(&&)와 전역 변수 값을 활용하여 자격을 판별
-            if (global_performance_idx >= 50.0 && training_months >= 6) {
-                printf(">> 🎉 축하합니다! [%c] 관원님은 승급 심사 대상자입니다.\n", user_initial);
-            } else {
-                printf(">> 🥋 수련을 지속하여 점수와 기간을 더 쌓으세요. (자격 미달)\n");
-            }
+            // 다중 결합된 데이터 리스트를 표 형태로 렌더링하도록 호출
+            print_all_reports(member_names, member_genders, training_months, sparring_counts, current_weights, training_hours, performance_indices);
         } 
         else if (menu_choice == 0) {
-            // 사용자가 0번을 눌렀을 때만 break를 만나 무한 루프를 탈출하고 프로그램 종료
-            printf("\n시스템을 종료합니다. 즐거운 수련 되세요! Oss!\n");
-            break; 
+            printf("\n시스템을 종료합니다. Oss!\n");
+            break; // 루프 탈출 프로세스 종료
         } 
         else {
-            printf("\n🚨 잘못된 번호입니다. 0~3 사이의 번호를 입력해주세요.\n");
+            printf("\n 잘못된 번호입니다. 0~3 사이의 번호를 입력해주세요.\n");
         }
     }
 
     return 0;
 }
+
+
