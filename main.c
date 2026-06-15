@@ -101,7 +101,7 @@ int main() {
     
     int menu_choice; // 사용자의 메뉴 선택 번호를 담을 지역 변수
 
-// while(1) 무한 루프 기반 메뉴 UI 프레임워크 (3차 구조 유지)
+// while(1) 무한 루프 기반 메뉴 프레임워크
     while(1) {
         printf("\n--- 주짓수 통합 관원 관리 시스템 V4.0 ---\n");
         printf("1. 전 관원 정보 일괄 입력 (%d명)\n", MAX_MEMBERS);
@@ -122,7 +122,7 @@ int main() {
             calculate_all(training_months, sparring_counts, training_hours, performance_indices);
         } 
         else if (menu_choice == 3) {
-            // 다중 결합된 데이터 리스트를 표 형태로 렌더링하도록 호출
+            // 다중 결합된 데이터 리스트를 표 형태로 호출
             print_all_reports(member_names, member_genders, training_months, sparring_counts, current_weights, training_hours, performance_indices);
         } 
         else if (menu_choice == 0) {
