@@ -35,7 +35,7 @@ void input_members(char names[][20], char genders[], int months[], int sp_counts
     printf("\n>> 모든 관원의 기본 데이터 입력이 완료되었습니다!\n");
 }
 
-/ 함수 2. 전 관원 퍼포먼스 지수 일괄 계산 함수 (반환 및 포인터 효과 활용)
+// 함수 2. 전 관원 퍼포먼스 지수 일괄 계산 함수 (반환 및 포인터 효과 활용)
 // 반복문을 순회하며 각 관원의 산술 연산을 수행하고 그 결과를 성장지수 배열에 직접 저장
 void calculate_all(int months[], int sp_counts[], double hours[], double idx_arr[]) {
     for (int i = 0; i < MAX_MEMBERS; i++) {
