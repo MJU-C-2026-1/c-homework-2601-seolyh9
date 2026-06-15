@@ -6,6 +6,37 @@
 
 #include <stdio.h>
 
+// [1] 기호 상수 정의 영역
+#define MAX_MEMBERS 3
+
+// main 함수로부터 배열의 주소들을 전달받아 루프를 돌며 다중 데이터를 안전하게 수집
+void input_members(char names[][20], char genders[], int months[], int sp_counts[], double weights[], double hours[]) {
+    printf("\n=== 🥋 [1] 전 관원 데이터 일괄 입력 (총 %d명) ===\n", MAX_MEMBERS);
+    
+    for (int i = 0; i < MAX_MEMBERS; i++) {
+        printf("\n[%d번째 관원 정보 입력]\n", i + 1);
+        
+        // 이니셜 1글자에서 문자열(영문 이름) 형식으로 확장
+        printf("영문 이름 입력 (공백 없이): ");
+        scanf("%s", names[i]); 
+        
+        printf("성별 입력 (남성: M, 여성: F): ");
+        scanf(" %c", &genders[i]); // 입력 버퍼 찌꺼기 방지를 위해 공백 추가
+        
+        printf("수련 기간(개월)과 주간 스파링 횟수 입력 (예: 12 5): ");
+        scanf("%d %d", &months[i], &sp_counts[i]);
+        
+        printf("현재 체중(kg) 입력: ");
+        scanf("%lf", &weights[i]);
+        
+        printf("일주일 총 훈련 시간(시간) 입력: ");
+        scanf("%lf", &hours[i]);
+    }
+    printf("\n>> 모든 관원의 기본 데이터 입력이 완료되었습니다!\n");
+}
+
+
+[2] 사용자 정의 함수 정의 영역 (모듈화 및 데이터 전달)
 // [1] 전역 변수 선언 영역
 // 프로그램이 종료될 때까지 성장 지수 데이터를 유지하고, 함수 내부에서 업데이트하기 위해 선언
 
